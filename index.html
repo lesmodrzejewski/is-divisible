@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div id="container">
+        <div id="header">
+            <h1>Is divisible?</h1>
+            <h3>Choose any number to check if it is divisible by other numbers you choose. Fields marked with * are required.</h3>
+        </div>
+
+        <form id="form">
+            <div id="inputs">
+                <label for="dividend required">Enter the number you want to divide</label>
+                <input id="dividend" type="number">
+                <label type="factor-1 required">Enter the number you want to divide by</label>
+                <input id="factor-1" type="number">
+                <label for="factor-2">Enter the number you want to divide by</label>
+                <input id="factor-2" type="number" >
+            </div>
+            <div id="submit-button">
+                <h3>Get results</h3>
+                <input type="submit" id="submit">
+            </div>
+
+        </form>
+        <h3 id="result">The result will be shown here</h3>
+    </div>
+
+
+    <script>
+
+        // Html Elements
+        const form = document.getElementById('form')
+        const dividend = document.getElementById('dividend');
+        const factor1 = document.getElementById('factor-1');
+        const factor2 = document.getElementById('factor-2');
+        const result = document.getElementById('result');
+
+        // Event Listener listening for submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            divisible();
+        })
+
+
+        function divisible() {
+
+            // Input values
+
+            // Dividend
+            const dividendValue = dividend.value
+
+            // Divisors
+            const factor1Value = factor1.value;
+            const factor2Value = factor2.value;
+
+            // checking by which divisors we can divide the dividend
+
+            console.log(dividendValue);
+            console.log(factor1Value);
+            console.log(factor2Value);
+
+            if(dividendValue === '') {
+                alert('Enter the number you want to divide ')
+            } if(factor1Value === '') {
+                alert('Enter the number you want to divide by')
+            } if (factor2Value === factor1Value) {
+                alert('Factor 1 and Factor 2 are the same')
+            } else if (factor2Value === '') {
+                if(dividendValue % factor1Value === 0)
+                    result.textContent = `${dividendValue} is divisible by ${factor1Value}`;
+                else {
+                    result.textContent = `${dividendValue} is NOT divisible by ${factor1Value}`;
+                }
+            }
+            else {
+                if(dividendValue % factor1Value === 0 && dividendValue % factor2Value === 0)
+                    result.textContent = `${dividendValue} is divisible by ${factor1Value} and ${factor2Value}`;
+                else if(dividendValue % factor1Value === 0)
+                    result.textContent = `${dividendValue} is only divisible by ${factor1Value}`;
+                else if(dividendValue % factor2Value === 0)
+                    result.textContent = `${dividendValue} is only divisible by ${factor2Value}`;
+                else {
+                    result.textContent = `${dividendValue} is NOT divisible by ${factor1Value} and ${factor2Value}`;
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
